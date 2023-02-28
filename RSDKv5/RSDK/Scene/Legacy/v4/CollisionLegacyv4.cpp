@@ -1608,7 +1608,7 @@ void RSDK::Legacy::v4::ProcessTileCollisions(Entity *player)
     if (player->speed < 0x60000)
         collisionTolerance = player->angle == 0 ? 8 : 15;
 
-    if (player->gravity == 1)
+    if (player->gravity)
         ProcessAirCollision(player);
     else
         ProcessPathGrip(player);
@@ -2311,7 +2311,7 @@ void RSDK::Legacy::v4::BoxCollision(Entity *thisEntity, int32 thisLeft, int32 th
             }
 
             if (sensors[1].collided || sensors[0].collided) {
-                if (otherEntity->gravity == 1)
+                if (otherEntity->gravity)
                     otherEntity->ypos = thisBottom - otherTop;
 
                 if (otherEntity->yvel <= 0)
@@ -2489,7 +2489,7 @@ void RSDK::Legacy::v4::BoxCollision(Entity *thisEntity, int32 thisLeft, int32 th
                     }
 
                     if (sensors[1].collided || sensors[0].collided) {
-                        if (otherEntity->gravity == 1)
+                        if (otherEntity->gravity)
                             otherEntity->ypos = thisBottom - otherTop;
 
                         if (otherEntity->yvel <= 0)
